@@ -1,0 +1,71 @@
+These commands will be run on both switches 0-1-2-3
+
+
+vlan 50
+name students
+exit
+vlan 60
+name teachers
+exit
+vlan 99
+name mgt
+exit
+interface range fastEthernet 0/5-15
+switchport mode access
+switchport access vlan 50
+exit
+
+interface range fastEthernet 0/21-23
+switchport mode access
+switchport access vlan 60
+exit
+
+interface fastEthernet 0/24
+switchport mode access
+switchport  access vlan 99
+
+interface fastEthernet 0/2
+switchport mode trunk
+switchport trunk allowed vlan 1,50,60,99
+----------------------------------
+Run this on switch 0-1
+interface range fastEthernet 0/2-3
+channel-protocol pagp
+channel-group 1 mode desirable
+-------------------------------------
+Run this on swith 0-2
+interface range fastEthernet 0/16-17
+channel-protocol pagp
+channel-group 2 mode desirable
+------------------------------------
+Run this on switch 1-2
+Run this on switch 1-2
+interface range fastEthernet 0/18-19
+channel-protocol pagp
+channel-group 4 mode desirable
+------------------------------------
+Run this on switch 0-2
+interface range fastEthernet 0/16-17
+switchport mode trunk
+switchport trunk allowed vlan 1,50,60,99
+------------UP TO HERE ITS GOOD--------
+Run this on switch 2-3 
+interface fastEthernet 0/2
+switchport mode trunk
+switchport trunk allowed vlan 1,50,60,99
+-----------------------------------------
+Run this on Switch 3 and 5 and then on switch 5 create the VLANs
+interface fastEthernet 0/3
+switchport mode trunk
+switchport trunk allowed vlan 1,50,60,99
+-------------------------------------------
+
+
+
+
+
+
+
+
+
+
