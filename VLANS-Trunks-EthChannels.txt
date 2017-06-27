@@ -10,7 +10,7 @@ exit
 vlan 99
 name mgt
 exit
-interface range fastEthernet 0/5-15
+interface range fastEthernet 0/5-10
 switchport mode access
 switchport access vlan 50
 exit
